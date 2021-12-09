@@ -1,0 +1,41 @@
+{% extends 'base-front.html.twig' %}
+
+{% block title %}Offresindividuel index{% endblock %}
+
+{% block body %}
+    <h1>Offresindividuel index</h1>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Descriptif_individuel</th>
+                <th>Expiration</th>
+                <th>Prix_individuel</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for offresindividuel in offresindividuels %}
+            <tr>
+                <td>{{ offresindividuel.id }}</td>
+                <td>{{ offresindividuel.descriptifIndividuel }}</td>
+                <td>{{ offresindividuel.Expiration ? offresindividuel.Expiration|date('Y-m-d') : '' }}</td>
+                <td>{{ offresindividuel.prixIndividuel }}</td>
+                <td>
+                    <a class="btn btn-warning" href="{{ path('offresindividuel_show', {'id': offresindividuel.id}) }}">show</a>
+                    <a class="btn btn-secondary" href="{{ path('offresindividuel_edit', {'id': offresindividuel.id}) }}">edit</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="5">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <a class="btn btn-primary" href="{{ path('offresindividuel_new') }}">Create new</a>
+ {{ knp_pagination_render(offresindividuels) }}
+
+{% endblock %}

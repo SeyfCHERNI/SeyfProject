@@ -1,0 +1,31 @@
+{%block body%}
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Descriptif_groupes</th>
+                <th>Date_expiration</th>
+                <th>Prix_groupes</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for offresgroupe in offresgroupes %}
+            <tr>
+                <td>{{ offresgroupe.id }}</td>
+                <td>{{ offresgroupe.DescriptifGroupes }}</td>
+                <td>{{ offresgroupe.DateExpiration ? offresgroupe.DateExpiration|date('Y-m-d') : '' }}</td>
+                <td>{{ offresgroupe.PrixGroupes }}</td>
+                <td>
+                    <a href="{{ path('offresgroupes_show', {'id': offresgroupe.id}) }}">show</a>
+                    <a href="{{ path('offresgroupes_edit', {'id': offresgroupe.id}) }}">edit</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="5">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+{%endblock%}

@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+    <title>galaxy Assurance</title>
+    <meta name="description" content="" />
+    <meta name="author" content="Tooplate" />
+    <!-- Bootstrap core CSS -->
+    <link href="{{asset('vendor/bootstrap/css/bootstrap.min.css')}}" rel="stylesheet" />
+    
+    <!-- Additional CSS Files -->
+    <link href="{{asset('https://fonts.googleapis.com/css?family=Lato:100,300,400,700,900')}}" rel="stylesheet" />
+    <link rel="stylesheet" href="{{asset('BackOffice/assets/css/fontawesome.css')}}" />
+    <link rel="stylesheet" href="{{asset('BackOffice/assets/css/tooplate-style.css')}}" />
+    <link rel="stylesheet" href="{{asset('BackOffice/assets/css/owl.css')}}" />
+    <link rel="stylesheet" href="{{asset('BackOffice/assets/css/lightbox.css')}}" />
+</head>
+<!--
+Tooplate 2116 Blugoon
+https://www.tooplate.com/view/2116-blugoon
+-->
+<body>
+<div id="page-wraper">
+    <!-- Sidebar Menu -->
+    <div class="responsive-nav">
+        <i class="fa fa-bars" id="menu-toggle"></i>
+        <div id="menu" class="menu">
+            <i class="fa fa-times" id="menu-close"></i>
+            <div class="container">
+                <div class="image">
+                    <a href="#"><img src="{{asset('FrontOffice/images/background.jpg')}}" alt="Blugoon by Tooplate" /></a>
+                </div>
+                <div class="author-content">
+                    <h4>Galaxy Assurance</h4>
+                    <span>Star Surfers</span>
+                </div>
+                <nav class="main-nav" role="navigation">
+                    <ul class="main-menu">
+                        <li><a href="{{asset('#section1')}}">Home</a></li>
+                        <li><a href="{{asset('#section2')}}">Constat</a></li>
+                        <li><a href="{{asset('#section3')}}">Voiture</a></li>
+                        <li><a href="{{asset('#section4')}}">Offre</a></li>
+                        <li><a href="{{asset('#section4')}}">Paiement</a></li>
+                    </ul>
+                </nav>
+                <div class="social-network">
+                    <ul class="soial-icons">
+                        <li>
+                            <a href="#"><i class="fa fa-facebook"></i></a>
+                        </li>
+                        <li>
+                            <a href="#"><i class="fa fa-twitter"></i></a>
+                        </li>
+                        <li>
+                            <a href="#"><i class="fa fa-linkedin"></i></a>
+                        </li>
+                        <li>
+                            <a href="#"><i class="fa fa-dribbble"></i></a>
+                        </li>
+                        <li>
+                            <a href="#"><i class="fa fa-rss"></i></a>
+                        </li>
+                    </ul>
+                </div>
+                <div class="copyright-text">
+                    <p>Copyright 2020 Blugoon<br>
+                        Design: Tooplate</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <section class="section about-me" data-section="section1">
+        <div class="container">
+            <div class="p-2">
+                {% block body%}
+                {%endblock%}
+            </div>
+        </div>
+    </section>
+</div>
+<!-- Scripts -->
+<!-- Bootstrap core JavaScript -->
+<script src="{{asset('BackOffice/vendor/jquery/jquery.min.js')}}"></script>
+<script src="{{asset('BackOffice/vendor/bootstrap/js/bootstrap.bundle.min.js')}}"></script>
+
+<script src="{{asset('BackOffice/assets/js/isotope.min.js')}}"></script>
+<script src="{{asset('BackOffice/assets/js/owl-carousel.js')}}"></script>
+<script src="{{asset('BackOffice/assets/js/lightbox.js')}}"></script>
+<script src="{{asset('BackOffice/assets/js/custom.js')}}"></script>
+<script>
+    //according to loftblog tut
+    $(".main-menu li:first").addClass("active");
+
+    var showSection = function showSection(section, isAnimate) {
+        var direction = section.replace(/#/, ""),
+            reqSection = $(".section").filter(
+                '[data-section="' + direction + '"]'
+            ),
+            reqSectionPos = reqSection.offset().top - 0;
+
+        if (isAnimate) {
+            $("body, html").animate(
+                {
+                    scrollTop: reqSectionPos
+                },
+                800
+            );
+        } else {
+            $("body, html").scrollTop(reqSectionPos);
+        }
+    };
+
+    var checkSection = function checkSection() {
+        $(".section").each(function() {
+            var $this = $(this),
+                topEdge = $this.offset().top - 80,
+                bottomEdge = topEdge + $this.height(),
+                wScroll = $(window).scrollTop();
+            if (topEdge < wScroll && bottomEdge > wScroll) {
+                var currentId = $this.data("section"),
+                    reqLink = $("a").filter("[href*=\\#" + currentId + "]");
+                reqLink
+                    .closest("li")
+                    .addClass("active")
+                    .siblings()
+                    .removeClass("active");
+            }
+        });
+    };
+
+    $(".main-menu").on("click", "a", function(e) {
+        e.preventDefault();
+        showSection($(this).attr("href"), true);
+    });
+
+    $(window).scroll(function() {
+        checkSection();
+    });
+</script>
+</body>
+</html>

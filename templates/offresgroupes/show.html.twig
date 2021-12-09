@@ -1,0 +1,34 @@
+{% extends 'base-front.html.twig' %}
+
+{% block title %}Offresgroupes{% endblock %}
+
+{% block body %}
+    <h1>Offresgroupes</h1>
+
+    <table class="table">
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ offresgroupe.id }}</td>
+            </tr>
+            <tr>
+                <th>Descriptif_groupes</th>
+                <td>{{ offresgroupe.DescriptifGroupes }}</td>
+            </tr>
+            <tr>
+                <th>Date_expiration</th>
+                <td>{{ offresgroupe.DateExpiration ? offresgroupe.DateExpiration|date('Y-m-d') : '' }}</td>
+            </tr>
+            <tr>
+                <th>Prix_groupes</th>
+                <td>{{ offresgroupe.PrixGroupes }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <a href="{{ path('offresgroupes_index') }}" class="btn btn-dark">back to list</a>    
+
+    <a href="{{ path('offresgroupes_edit', {'id': offresgroupe.id}) }}" class="btn btn-warning">edit</a>
+
+    {{ include('offresgroupes/_delete_form.html.twig') }}
+{% endblock %}
